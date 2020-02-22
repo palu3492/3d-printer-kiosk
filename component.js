@@ -5,33 +5,26 @@ const e = React.createElement;
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { liked: false };
+        this.state = {printer: "test"};
+        start(this.updatePrinterState.bind(this));
+    }
+
+    updatePrinterState(data){
+        console.log(data);
+        this.setState = {printer: data};
     }
 
     render() {
-        if (this.state.liked) {
-            return 'You liked comment number ' + this.props.commentID;
-        }
-
-        // return e(
-        //     'button',
-        //     { onClick: () => this.setState({ liked: true }) },
-        //     'Like'
-        // );
-
-        // Display a "Like" <button>
         return (
-            <button onClick={() => this.setState({ liked: true })}>
-                Like
-            </button>
+            <p>{this.state.printer}</p>
         );
     }
 }
 
 // Find all DOM containers, and render Like buttons into them.
-const likeButtonContainer = document.querySelector('#app');
-console.log(likeButtonContainer);
+const appContainer = document.querySelector('#app');
+
 ReactDOM.render(
     e(App, {  }), // props here
-    likeButtonContainer
+    appContainer
 );
